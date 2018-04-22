@@ -3,14 +3,25 @@
 
 ## Build & Run
 
+埋め込みDBのH2を利用しています。
+
 ```text
 mvn clean package
 ```
 
 ```text
-java -jar .\target\demo-0.0.0-SNAPSHOT.jar
+java -jar .\target\demo-0.0.1-SNAPSHOT.jar
 ```
 
+## テストユーザー
+
+|email                  |password         |admin  |
+|:----------------------|:----------------|:------|
+|kkamimura@example.com  |iWKw06pvj        |true   |
+|rsakuma@example.com    |sk10ZIaiq        |false  |
+|tyukinaga@example.com  |me02yFufL        |false  |
+|zsawatari@example.com  |FjqU39aia        |false  |
+|ehiyama@example.com    |ruFOep18r        |false  |
 
 ## API
 
@@ -65,11 +76,11 @@ curl -i -b cookie.txt "http://localhost:9000/app/memo/list"
 ### USERロールAPI
 
 ```text
-curl -i "http://localhost:9000/app/user"
+curl -i -b cookie.txt "http://localhost:9000/app/user"
 ```
 
 ```text
-curl -i "http://localhost:9000/app/user/echo/{message}"
+curl -i -b cookie.txt "http://localhost:9000/app/user/echo/{message}"
 ```
 
 ```text
@@ -79,14 +90,14 @@ curl -i -b cookie.txt -H "Content-Type:application/json" -H "x-xsrf-token:{CSRF_
 ### ADMINロールAPI
 
 ```text
-curl -i "http://localhost:9000/app/admin"
+curl -i -b cookie.txt "http://localhost:9000/app/admin"
 ```
 
 ```text
-curl -i "http://localhost:9000/app/admin/echo/{message}"
+curl -i -b cookie.txt "http://localhost:9000/app/admin/echo/{message}"
 ```
 
 ```text
-curl -i -H "Content-Type:application/json" -H "x-xsrf-token:{CSRF_TOKEN}" -X POST "http://localhost:9000/app/admin/echo" -d "{\"message\": \"hello world\"}"
+curl -i -b cookie.txt -H "Content-Type:application/json" -H "x-xsrf-token:{CSRF_TOKEN}" -X POST "http://localhost:9000/app/admin/echo" -d "{\"message\": \"hello world\"}"
 ```
 

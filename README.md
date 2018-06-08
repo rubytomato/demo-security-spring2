@@ -4,8 +4,8 @@ Development environment
 
 * Java 1.8.0
 * Spring Boot 2.0.2
-* Maven 3.5.2
 * H2
+* Maven 3.5.3
 
 ## Build & Run
 

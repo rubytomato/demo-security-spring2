@@ -53,7 +53,7 @@ public class MemoControllerIntegrationTests {
     }
 
     @Test
-    public void getOne() throws Exception {
+    public void getMemo() throws Exception {
         Memo expected = new Memo(1L, "memo shopping", "memo1 description", false, LocalDateTime.of(2018, 1, 4, 12, 1, 0));
         String expectedJson = objectMapper.writeValueAsString(expected);
 

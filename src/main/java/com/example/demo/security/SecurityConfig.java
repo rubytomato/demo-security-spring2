@@ -21,9 +21,9 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    // @formatter:off
         http
             // AUTHORIZE
             .authorizeRequests()
@@ -69,41 +69,40 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .maxSessionsPreventsLogin(false)
             ;
         // @formatter:on
-    }
+  }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth,
-                                @Qualifier("simpleUserDetailsService") UserDetailsService userDetailsService,
-                                PasswordEncoder passwordEncoder) throws Exception {
-        auth.eraseCredentials(true)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder);
-    }
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth,
+                              @Qualifier("simpleUserDetailsService") UserDetailsService userDetailsService,
+                              PasswordEncoder passwordEncoder) throws Exception {
+    auth.eraseCredentials(true)
+        .userDetailsService(userDetailsService)
+        .passwordEncoder(passwordEncoder);
+  }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        //return new BCryptPasswordEncoder();
-    }
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+  }
 
-    AuthenticationEntryPoint authenticationEntryPoint() {
-        return new SimpleAuthenticationEntryPoint();
-    }
+  AuthenticationEntryPoint authenticationEntryPoint() {
+    return new SimpleAuthenticationEntryPoint();
+  }
 
-    AccessDeniedHandler accessDeniedHandler() {
-        return new SimpleAccessDeniedHandler();
-    }
+  AccessDeniedHandler accessDeniedHandler() {
+    return new SimpleAccessDeniedHandler();
+  }
 
-    AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new SimpleAuthenticationSuccessHandler();
-    }
+  AuthenticationSuccessHandler authenticationSuccessHandler() {
+    return new SimpleAuthenticationSuccessHandler();
+  }
 
-    AuthenticationFailureHandler authenticationFailureHandler() {
-        return new SimpleAuthenticationFailureHandler();
-    }
+  AuthenticationFailureHandler authenticationFailureHandler() {
+    return new SimpleAuthenticationFailureHandler();
+  }
 
-    LogoutSuccessHandler logoutSuccessHandler() {
-        return new HttpStatusReturningLogoutSuccessHandler();
-    }
+  LogoutSuccessHandler logoutSuccessHandler() {
+    return new HttpStatusReturningLogoutSuccessHandler();
+  }
 
 }
